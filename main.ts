@@ -25,7 +25,7 @@
 //
 // Run: mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 // The grader runs this twice and the two runs must write the same bytes,
@@ -35,7 +35,13 @@ import { join } from 'node:path';
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 mkdirSync(outDir, { recursive: true });
 
-copyFileSync(
-  new URL('./entry.png', import.meta.url),
-  join(outDir, 'entry.png'),
-);
+const source = new URL('./entry.png', import.meta.url);
+const target = join(outDir, 'entry.png');
+
+copyFileSync(source, target);
+
+// Guard against a truncated or failed copy: the output must be the same
+// file, byte for byte, so refuse to finish silently if the sizes differ.
+if (statSync(source).size !== statSync(target).size) {
+  throw new Error('entry.png copy failed: size mismatch');
+}
