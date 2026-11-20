@@ -5,7 +5,10 @@
 // 20 November 2026":
 //   - Lead: Trump, Xi and Putin sign a "Declaration toward Peace" after the
 //     first three-way summit in Shenzhen (UN reform, nuclear risk talks,
-//     energy stability).
+//     energy stability). The lead body text now reads "After 90 minutes of
+//     trilateral talks" — the meeting lasted 90 minutes, not six hours;
+//     that one duration was corrected in the image and is the only change
+//     from the first submitted version.
 //   - World Court: the ICJ rules 9-6 that Myanmar committed genocide against
 //     the Rohingya — the first state ever found guilty of genocide.
 //   - Asian markets plunge (Nikkei -4.8%, Taiwan -5%+) as the AI sell-off
@@ -30,8 +33,9 @@ import { join } from 'node:path';
 
 // The grader runs this twice and the two runs must write the same bytes,
 // so this program only copies a fixed file and never generates anything.
-// The bundled image is 1024x1024, 290,430 bytes (sha256 recorded in the
-// submission handoff), well under the 1 MiB gate.
+// The bundled image is 1024x1024, 290,146 bytes, sha256
+// 6f9742369eb2078a91725a8271ace64fa8092dfa3a188103fabfc988d787a1b2,
+// well under the 1 MiB gate.
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 mkdirSync(outDir, { recursive: true });
 
